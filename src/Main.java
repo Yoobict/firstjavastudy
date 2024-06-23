@@ -145,7 +145,7 @@ class practiceTest {
         int y = Integer.parseInt(st.nextToken()); //받은 총 값
 
         for(int i=0;i<=n;i++){
-            for(int j=0;j<=y;j++) {
+            for(int j=0;j<=n-i;j++) {
                 int k = n - i - j;
                 int count = 10000*i+5000*j+1000*k;
                 if(y==count&&k>=0){
