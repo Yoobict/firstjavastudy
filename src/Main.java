@@ -1,15 +1,140 @@
-//TIP 코드를 <b>실행</b>하려면 <shortcut actionId="Run"/>을(를) 누르거나
-// 에디터 여백에 있는 <icon src="AllIcons.Actions.Execute"/> 아이콘을 클릭하세요.
-public class Main {
-    public static void main(String[] args) {
-        //TIP 캐럿을 강조 표시된 텍스트에 놓고 <shortcut actionId="ShowIntentionActions"/>을(를) 누르면
-        // IntelliJ IDEA이(가) 수정을 제안하는 것을 확인할 수 있습니다.
-        System.out.println("Hello and welcome!");
+import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.StringTokenizer;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP <shortcut actionId="Debug"/>을(를) 눌러 코드 디버그를 시작하세요. 1개의 <icon src="AllIcons.Debugger.Db_set_breakpoint"/> 중단점을 설정해 드렸습니다
-            // 언제든 <shortcut actionId="ToggleLineBreakpoint"/>을(를) 눌러 중단점을 더 추가할 수 있습니다.
-            System.out.println("i = " + i);
+class practiceTest {
+    public String number01() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+
+        return (a*b)%2==0?"Even":"Odd"; //a와 b의 곱셈값을 짝수인지 홀수인지 구분한뒤 리턴
+    }
+
+    public int number02() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String n = br.readLine();
+        int count = 0;
+        for(char c : n.toCharArray()){
+            if(c=='1'){
+                count++;
+            }
         }
+        return count;
+    }
+
+    public int number03() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int mincount = Integer.MAX_VALUE;
+        for(int i : arr){
+            int count = 0;
+            while(i%2==0){
+                i/=2;
+                count ++;
+            }
+            mincount = Math.min(mincount, count);
+        }
+
+        return mincount;
+    }
+
+    public int number04() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = Integer.parseInt(br.readLine()); //500원 갯수
+        int b = Integer.parseInt(br.readLine()); //100원 갯수
+        int c = Integer.parseInt(br.readLine()); //50원 갯수
+        int x = Integer.parseInt(br.readLine()); //총 금액
+
+        int count = 0; //방법 개수
+        for(int i=0;i<=a;i++){
+            for(int j=0;j<=b;j++){
+                for(int k=0;k<=c;k++){
+                    if(x==500*i + 100*j + 50*k){
+                        count+=1; //동전의 합과 총 금액이 같다면 갯수 +1
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    public int number05() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken()); //1이하 n이하 정수
+        int count = 0; //리턴값
+        int a = Integer.parseInt(st.nextToken()); //숫자의 합이 a이상 b이하
+        int b = Integer.parseInt(st.nextToken());
+
+        for(int i=1;i<=n;i++){
+            char[] c_number = String.valueOf(i).toCharArray(); //10진법의 각 자리의 정수를 나누기 위해 문자배열로 변환
+            int count_number = 0; //10진법의 각 자리 숫자의 합
+            for (char c : c_number) {
+                count_number += Integer.parseInt(String.valueOf(c));
+            }
+            if(count_number>=a&&count_number<=b) { //각 자리의 숫자의 합이 a이상 b이하면 리턴값에 더함
+                count += i;
+            }
+        }
+
+        return count;
+
+    }
+
+    public int number06() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        Integer[] arr2 = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        Arrays.sort(arr2,Collections.reverseOrder());
+
+        int a = 0;
+        int b = 0;
+
+        for(int i=0;i<arr2.length;i++){
+            if(i%2==0){
+                a+=arr2[i];
+            }else{
+                b+=arr2[i];
+            }
+        }
+
+        return a-b;
+
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        /*Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();*/ //속도 느림 bufferedReader 선호
+
+        practiceTest p = new practiceTest();
+
+        //System.out.println(p.number03());
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        bw.write(String.valueOf(p.number06()));
+        bw.close();
+
+
     }
 }
