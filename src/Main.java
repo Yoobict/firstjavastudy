@@ -157,6 +157,35 @@ class practiceTest {
         return "-1 -1 -1";
     }
 
+    public String number09() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String S = br.readLine();
+
+        String reverseS = new StringBuilder(S).reverse().toString();
+
+        String[] words = {"dream", "dreamer", "erase", "eraser"};
+        for(int i=0;i< words.length;i++){
+            words[i] = new StringBuilder(words[i]).reverse().toString();
+        }
+
+        int index = 0;
+        while(index<reverseS.length()){
+            boolean match = false;
+            for(String w : words) {
+                if (reverseS.startsWith(w, index)) {
+                    index += w.length();
+                    match = true;
+                    break;
+                }
+
+            }
+            if(!match){
+                return "NO";
+            }
+        }
+        return "YES";
+    }
+
 
 
 }
@@ -172,9 +201,8 @@ public class Main {
 
         //System.out.println(p.number03());
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); //버퍼드 습관화
-        bw.write(p.number08()); //문제마다 메소드 바꿔줌
+        bw.write(p.number09()); //문제마다 메소드 바꿔줌
         bw.close();
-
 
     }
 }
