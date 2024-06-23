@@ -119,6 +119,46 @@ class practiceTest {
 
     }
 
+    public int number07() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(arr);
+        int before = 0; //같은 값 제외시키기 위한 변수
+        int count = 0; //떡단의 떡의 개수
+        for(int i:arr){
+            if(i!=before){
+                count += 1;
+                before = i;
+            }
+        }
+        return count;
+    }
+
+    public String number08() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken()); //지폐의 총 갯수
+        int y = Integer.parseInt(st.nextToken()); //받은 총 값
+
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=y;j++) {
+                int k = n - i - j;
+                int count = 10000*i+5000*j+1000*k;
+                if(y==count&&k>=0){
+                    return i + " " + j + " " + k;
+                }
+            }
+        }
+
+        return "-1 -1 -1";
+    }
+
+
+
 }
 
 public class Main {
@@ -131,8 +171,8 @@ public class Main {
         practiceTest p = new practiceTest();
 
         //System.out.println(p.number03());
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        bw.write(String.valueOf(p.number06()));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); //버퍼드 습관화
+        bw.write(p.number08()); //문제마다 메소드 바꿔줌
         bw.close();
 
 
