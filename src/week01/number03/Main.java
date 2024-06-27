@@ -35,11 +35,12 @@ public class Main {
         int index = 0;
 
         while (index < n && x >= arr[index]) {
-            x -= arr[index++];
+            x -= arr[index];
+            index++;
             count++;
         }
-
-        if (x > 0 && count > 0) {
+        //과자의 갯수가 남았는데 아이들에게 디 나눠줬다면 마지막 아이는 만족하지 못하므로 인원수에서 뺌
+        if (x > 0 && count == n) {
             count--;
         }
         System.out.println(count);
