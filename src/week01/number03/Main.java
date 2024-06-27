@@ -33,16 +33,17 @@ public class Main {
         }
         //총 과자의 개수 에서 오름차순으로 정렬한 번호(원하는 과자의 개수)를 빼면서 만족한 아이의 수를 증가
         //과자의 개수가 마이너스가 되면 종료하고 출력
-        int count = 0; //만족한 아이의 수
-        for(int i = 0; i < n; i++){
-            if(x - arr[i] >= 0){
-                x = x - arr[i];
-                count++;
-            }
+        int count = 0; // 만족한 아이의 수
+        int index = 0;
+
+        while (index < n && x >= arr[index]) {
+            x -= arr[index++];
+            count++;
         }
-         if(x>0&&x){
-             count--;
-         }
+
+        if (x > 0 && count > 0) {
+            count--;
+        }
         System.out.println(count);
     }
 }
