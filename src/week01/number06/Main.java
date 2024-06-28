@@ -15,23 +15,25 @@ public class Main {
         }
     }
     public static boolean isTrue(String s){
-        if(s.charAt(0)!='A'){
+        if(s.charAt(0)!='A'){ //문자열 s의 첫번째 문자가 A가 아니면 거짓을 반환
             return false;
         }
         int count = 0;
-        for(int i=2;i<s.length()-1;i++){
+        int num = 0;
+        for(int i=2;i<s.length()-1;i++){ //문자열의 3번째 글자부터 마지막에서 2번째 글자 사이에 C가 몇개 있는지 검사
             if(s.charAt(i)=='C'){
                 count += 1;
+                num = i;
             }
         }
-        if(count!=1){
+        if(count!=1){ //C가 하나도 없거나, 2개 이상이라면 거짓을 반환
             return false;
         }
-        for(int i=1;i<s.length();i++){
-            if(s.charAt(i)!='A'&&s.charAt(i)!='C'&&Character.isUpperCase(s.charAt(i))){
+        for(int i=1;i<s.length();i++){ //첫번째 글자 'A', 하나만 있는 'C'를 제외한 글자들 중 대문자가 있다면 거짓 반환
+            if(i!=num&&Character.isUpperCase(s.charAt(i))){
                 return false;
             }
         }
-        return true;
+        return true; //모든 조건 통과시 참 반환
     }
 }
