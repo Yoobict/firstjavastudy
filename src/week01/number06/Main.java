@@ -19,11 +19,9 @@ public class Main {
             return false;
         }
         int count = 0;
-        int num = 0;
         for(int i=2;i<s.length()-1;i++){
             if(s.charAt(i)=='C'){
                 count += 1;
-                num = i;
             }
         }
         if(count!=1){
